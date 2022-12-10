@@ -17,6 +17,10 @@ public class ActivityManagerServiceHook extends MethodHook {
         return ClassConstants.ActivityManagerService;
     }
 
+    /**
+     * todo 看一下这个方法的源码
+     * @return
+     */
     @Override
     public String getTargetMethod() {
         return MethodConstants.setSystemProcess;
@@ -33,7 +37,7 @@ public class ActivityManagerServiceHook extends MethodHook {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 super.beforeHookedMethod(param);
-                ActivityManagerServiceExt.getInstance().setServer(param.thisObject);
+                ActivityManagerServiceExt.getInstance().setService(param.thisObject);
             }
         };
     }

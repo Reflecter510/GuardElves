@@ -34,7 +34,7 @@ public class SystemServerHook extends AbstractAppHook {
     @Override
     public void hook() {
         for (String serverName : ClassConstants.serverExts.keySet()) {
-            new ServerOnBootHook(mClassLoader, serverName);
+            new SystemServiceOnBootHook(mClassLoader, serverName);
         }
         new ActivityManagerServiceHook(mClassLoader);
         new ActivitySwitchHook(mClassLoader);

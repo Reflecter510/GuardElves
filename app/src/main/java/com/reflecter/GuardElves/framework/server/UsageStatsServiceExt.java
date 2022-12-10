@@ -1,8 +1,8 @@
 package com.reflecter.GuardElves.framework.server;
 
-import com.reflecter.GuardElves.framework.server.base.AbstractServer;
+import com.reflecter.GuardElves.framework.server.base.AbstractSystemService;
 
-public class UsageStatsServiceExt extends AbstractServer {
+public class UsageStatsServiceExt extends AbstractSystemService {
     public static final String TAG = "UsageStatsServiceExt";
 
     private static volatile UsageStatsServiceExt sInstance;

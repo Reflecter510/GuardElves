@@ -6,18 +6,18 @@ import com.reflecter.GuardElves.util.Logger;
 
 import java.util.function.Consumer;
 
-public abstract class AbstractServer implements IServerExt {
-    protected Object mServer;
+public abstract class AbstractSystemService implements ISystemServiceExt {
+    protected Object mService;
 
     public abstract String getServerName();
 
     @Override
-    public void setServer(Object server) {
-        mServer = server;
+    public void setService(Object service) {
+        mService = service;
     }
 
     public boolean isServerBoot() {
-        return mServer != null;
+        return mService != null;
     }
 
     public void callMethodWithBootCheck(Consumer<Object> consumer) {

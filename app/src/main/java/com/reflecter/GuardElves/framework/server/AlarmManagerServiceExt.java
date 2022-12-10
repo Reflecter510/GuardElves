@@ -1,8 +1,8 @@
 package com.reflecter.GuardElves.framework.server;
 
-import com.reflecter.GuardElves.framework.server.base.AbstractServer;
+import com.reflecter.GuardElves.framework.server.base.AbstractSystemService;
 
-public class AlarmManagerServiceExt extends AbstractServer {
+public class AlarmManagerServiceExt extends AbstractSystemService {
     public static final String TAG = "AlarmManagerServiceExt";
     private static volatile AlarmManagerServiceExt sInstance;
 

@@ -1,9 +1,9 @@
 package com.reflecter.GuardElves.framework.server.base;
 
-public interface IServerExt {
+public interface ISystemServiceExt {
     /**
      * 设置系统服务的实例
-     * @param server
+     * @param service
      */
-    void setServer(Object server);
+    void setService(Object service);
 }

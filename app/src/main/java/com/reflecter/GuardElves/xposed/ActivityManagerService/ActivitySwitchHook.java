@@ -24,6 +24,10 @@ public class ActivitySwitchHook extends MethodHook {
         return ClassConstants.ActivityManagerService;
     }
 
+    /**
+     * todo 是否在这个方法插桩，有待考究
+     * @return
+     */
     @Override
     public String getTargetMethod() {
         return MethodConstants.updateActivityUsageStats;

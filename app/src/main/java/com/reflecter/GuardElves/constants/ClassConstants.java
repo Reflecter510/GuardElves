@@ -2,14 +2,14 @@ package com.reflecter.GuardElves.constants;
 
 import androidx.collection.ArrayMap;
 import com.reflecter.GuardElves.framework.server.*;
-import com.reflecter.GuardElves.framework.server.base.IServerExt;
+import com.reflecter.GuardElves.framework.server.base.ISystemServiceExt;
 
 
 /**
  * 类枚举.
  */
 public interface ClassConstants {
-    ArrayMap<String, IServerExt> serverExts = new ArrayMap<String, IServerExt>() { {
+    ArrayMap<String, ISystemServiceExt> serverExts = new ArrayMap<String, ISystemServiceExt>() { {
             put(PowerManagerService, PowerManagerServiceExt.getInstance());
             put(AlarmManagerService, AlarmManagerServiceExt.getInstance());
             put(DeviceIdleController, DeviceIdleControllerExt.getInstance());

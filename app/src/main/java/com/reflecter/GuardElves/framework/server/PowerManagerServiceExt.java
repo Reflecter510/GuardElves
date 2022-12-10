@@ -1,8 +1,8 @@
 package com.reflecter.GuardElves.framework.server;
 
-import com.reflecter.GuardElves.framework.server.base.AbstractServer;
+import com.reflecter.GuardElves.framework.server.base.AbstractSystemService;
 
-public class PowerManagerServiceExt extends AbstractServer {
+public class PowerManagerServiceExt extends AbstractSystemService {
     public static final String TAG = "PowerManagerServiceExt";
     private static volatile PowerManagerServiceExt sInstance;
 

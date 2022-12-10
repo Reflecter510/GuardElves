@@ -7,11 +7,11 @@ import com.reflecter.GuardElves.xposed.base.MethodHook;
 
 import de.robv.android.xposed.XC_MethodHook;
 
-public class ServerOnBootHook extends MethodHook {
+public class SystemServiceOnBootHook extends MethodHook {
     private static final String TAG = "ServerOnBootHook";
     private final String mTargetClass;
 
-    public ServerOnBootHook(ClassLoader classLoader, String targetClass) {
+    public SystemServiceOnBootHook(ClassLoader classLoader, String targetClass) {
         super(classLoader, targetClass);
         mTargetClass = targetClass;
     }
@@ -38,7 +38,7 @@ public class ServerOnBootHook extends MethodHook {
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                 super.afterHookedMethod(param);
                 if (ClassConstants.serverExts.containsKey(getTargetClass())) {
-                    ClassConstants.serverExts.get(getTargetClass()).setServer(param.thisObject);
+                    ClassConstants.serverExts.get(getTargetClass()).setService(param.thisObject);
                     Logger.d(TAG, "Hook onBootPhase: " + param.thisObject);
                 }
             }
