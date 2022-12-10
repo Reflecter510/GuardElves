@@ -47,15 +47,23 @@ public class DumpHook extends MethodHook {
                 PrintWriter pw = (PrintWriter) param.args[1];
                 String[] args = (String[]) param.args[2];
                 if (args != null && args.length == 1) {
-                    if (args[0].equals("deepIdle")) {
-                        DeviceIdleControllerExt.getInstance().stepIntoDeepIdle();
-                        pw.println("deepIdle done");
+                    switch (args[0]) {
+                        case "deepIdle":
+                            DeviceIdleControllerExt.getInstance().stepIntoDeepIdle();
+                            pw.println("deepIdle done");
+                            break;
+                        default:
+                            break;
                     }
                 } else if (args != null && args.length >= 2) {
-                    if (args[0].equals("forceStopApp")) {
-                        String packageName = args[1];
-                        ActivityManagerServiceExt.getInstance().forceStopPackage(packageName, 0);
-                        pw.println("forceStopApp done");
+                    switch (args[0]) {
+                        case "forceStopApp":
+                            String packageName = args[1];
+                            ActivityManagerServiceExt.getInstance().forceStopPackage(packageName, 0);
+                            pw.println("forceStopApp done");
+                            break;
+                        default:
+                            break;
                     }
                 }
             }
