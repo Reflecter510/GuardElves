@@ -3,6 +3,7 @@ package com.reflecter.GuardElves.framework.server;
 import com.reflecter.GuardElves.framework.server.base.AbstractServer;
 
 public class UsageStatsServiceExt extends AbstractServer {
+    public static final String TAG = "UsageStatsServiceExt";
 
     private static volatile UsageStatsServiceExt sInstance;
 
@@ -19,4 +20,8 @@ public class UsageStatsServiceExt extends AbstractServer {
 
     private UsageStatsServiceExt() { }
 
+    @Override
+    public String getServerName() {
+        return TAG;
+    }
 }

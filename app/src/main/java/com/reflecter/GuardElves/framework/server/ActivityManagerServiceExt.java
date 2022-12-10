@@ -25,12 +25,15 @@ public class ActivityManagerServiceExt extends AbstractServer {
 
     private ActivityManagerServiceExt() { }
 
-    public void killApp(String packageName) {
-        if (!isServerBoot()) {
-            Logger.e(TAG, "killApp: server not boot");
-            return;
-        }
-        XposedHelpers.callMethod(mServer, MethodConstants.forceStopPackage, packageName, MAIN_USER);
-        Logger.d(TAG, "killApp: " + packageName + " was killed");
+    @Override
+    public String getServerName() {
+        return TAG;
+    }
+
+    public void forceStopPackage(String packageName, int userId) {
+        callMethodWithBootCheck(o -> {
+            XposedHelpers.callMethod(mServer, MethodConstants.forceStopPackage, packageName, userId);
+            Logger.d(TAG, "forceStopPackage: " + packageName + " success");
+        });
     }
 }
