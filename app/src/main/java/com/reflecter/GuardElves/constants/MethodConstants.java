@@ -81,4 +81,5 @@ public interface MethodConstants {
     String reportBinderState = "reportBinderState";
 
     String dump = "dump";
+    String updateInteractivityLocked = "updateInteractivityLocked";
 }

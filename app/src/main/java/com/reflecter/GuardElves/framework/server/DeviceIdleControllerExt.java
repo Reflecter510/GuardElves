@@ -9,6 +9,7 @@ import de.robv.android.xposed.XposedHelpers;
 public class DeviceIdleControllerExt extends AbstractSystemService {
     public static final String TAG = "DeviceIdleControllerExt";
     private static volatile DeviceIdleControllerExt sInstance;
+    private boolean mScreenOn = false;
 
     public static DeviceIdleControllerExt getInstance() {
         if (sInstance == null) {
@@ -30,10 +31,20 @@ public class DeviceIdleControllerExt extends AbstractSystemService {
 
     public void stepIntoDeepIdle() {
         callMethodWithBootCheck(o -> {
-            int STATE_LOCATING = XposedHelpers.getStaticIntField(mService.getClass(), "STATE_LOCATING");
+            int STATE_LOCATING = XposedHelpers.getStaticIntField(mService.getClass(), FieldConstants.STATE_LOCATING);
             XposedHelpers.setIntField(mService, FieldConstants.mState, STATE_LOCATING);
             synchronized (mService.getClass()) {
                 XposedHelpers.callMethod(mService, MethodConstants.stepIdleStateLocked, TAG);
+            }
+        });
+    }
+
+    public void updateInteractivityLocked() {
+        callMethodWithBootCheck(o -> {
+            mScreenOn = XposedHelpers.getBooleanField(mService, FieldConstants.mScreenOn);
+            // todo 试验功能：灭屏直接进入DeepDoze
+            if (!mScreenOn) {
+                stepIntoDeepIdle();
             }
         });
     }

@@ -4,6 +4,7 @@ import com.reflecter.GuardElves.constants.ClassConstants;
 import com.reflecter.GuardElves.xposed.ActivityManagerService.ActivityManagerServiceHook;
 import com.reflecter.GuardElves.xposed.ActivityManagerService.ActivitySwitchHook;
 import com.reflecter.GuardElves.xposed.DeviceIdleController.DumpHook;
+import com.reflecter.GuardElves.xposed.DeviceIdleController.UpdateInteractivityLockedHook;
 import com.reflecter.GuardElves.xposed.base.AbstractAppHook;
 
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
@@ -36,8 +37,12 @@ public class SystemServerHook extends AbstractAppHook {
         for (String serverName : ClassConstants.serverExts.keySet()) {
             new SystemServiceOnBootHook(mClassLoader, serverName);
         }
+        // ActivityManagerService
         new ActivityManagerServiceHook(mClassLoader);
         new ActivitySwitchHook(mClassLoader);
+
+        // DeviceIdleController
+        new UpdateInteractivityLockedHook(mClassLoader);
         new DumpHook(mClassLoader);
     }
 }

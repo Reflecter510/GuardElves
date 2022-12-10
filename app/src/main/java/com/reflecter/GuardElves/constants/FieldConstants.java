@@ -48,5 +48,7 @@ public interface FieldConstants {
     String mForceIdle = "mForceIdle";
     String mState = "mState";
     String STATE_IDLE = "STATE_IDLE";
+    String STATE_LOCATING = "STATE_LOCATING";
     String mPowerSaveWhitelistUserApps = "mPowerSaveWhitelistUserApps";
+    String mScreenOn = "mScreenOn";
 }
