@@ -21,7 +21,7 @@ public class UsageStatsServiceExt extends AbstractSystemService {
     private UsageStatsServiceExt() { }
 
     @Override
-    public String getServerName() {
+    public String getServiceName() {
         return TAG;
     }
 }

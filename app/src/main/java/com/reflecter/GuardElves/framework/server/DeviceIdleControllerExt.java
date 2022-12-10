@@ -24,7 +24,7 @@ public class DeviceIdleControllerExt extends AbstractSystemService {
     private DeviceIdleControllerExt() { }
 
     @Override
-    public String getServerName() {
+    public String getServiceName() {
         return TAG;
     }
 

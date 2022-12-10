@@ -26,7 +26,7 @@ public class ActivityManagerServiceExt extends AbstractSystemService {
     private ActivityManagerServiceExt() { }
 
     @Override
-    public String getServerName() {
+    public String getServiceName() {
         return TAG;
     }
 

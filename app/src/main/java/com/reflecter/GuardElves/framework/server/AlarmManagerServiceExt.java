@@ -20,7 +20,7 @@ public class AlarmManagerServiceExt extends AbstractSystemService {
     private AlarmManagerServiceExt() { }
 
     @Override
-    public String getServerName() {
+    public String getServiceName() {
         return TAG;
     }
 }

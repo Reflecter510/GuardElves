@@ -21,7 +21,7 @@ public class PowerManagerServiceExt extends AbstractSystemService {
 
 
     @Override
-    public String getServerName() {
+    public String getServiceName() {
         return TAG;
     }
 }

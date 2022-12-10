@@ -9,24 +9,24 @@ import java.util.function.Consumer;
 public abstract class AbstractSystemService implements ISystemServiceExt {
     protected Object mService;
 
-    public abstract String getServerName();
+    public abstract String getServiceName();
 
     @Override
     public void setService(Object service) {
         mService = service;
     }
 
-    public boolean isServerBoot() {
+    public boolean isServiceBoot() {
         return mService != null;
     }
 
     public void callMethodWithBootCheck(Consumer<Object> consumer) {
-        if (!isServerBoot()) {
-            Logger.e(getServerName(), "callMethodWithBootCheck: server not boot");
+        if (!isServiceBoot()) {
+            Logger.e(getServiceName(), "callMethodWithBootCheck: service not boot");
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             consumer.accept(null);
         } else {
-            Logger.e(getServerName(), "callMethodWithBootCheck: SDK < N");
+            Logger.e(getServiceName(), "callMethodWithBootCheck: SDK < N");
         }
     }
 }

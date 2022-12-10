@@ -8,7 +8,7 @@ import com.reflecter.GuardElves.xposed.base.MethodHook;
 import de.robv.android.xposed.XC_MethodHook;
 
 public class SystemServiceOnBootHook extends MethodHook {
-    private static final String TAG = "ServerOnBootHook";
+    private static final String TAG = "SystemServiceOnBootHook";
     private final String mTargetClass;
 
     public SystemServiceOnBootHook(ClassLoader classLoader, String targetClass) {
