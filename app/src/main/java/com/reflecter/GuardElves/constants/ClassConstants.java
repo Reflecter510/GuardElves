@@ -76,4 +76,5 @@ public interface ClassConstants {
     String GreezeManagerService = "com.miui.server.greeze.GreezeManagerService";
     String FreezeUtils = "com.miui.server.greeze.FreezeUtils";
     String FreezeBinder = "com.miui.powerkeeper.millet.FreezeBinder";
+    String ActivityTaskManagerService = "com.android.server.wm.ActivityTaskManagerService";
 }

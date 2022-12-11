@@ -11,6 +11,10 @@ public class ActivityManagerServiceExt extends AbstractSystemService {
     public final static int MAIN_USER = 0;
 
     private static volatile ActivityManagerServiceExt sInstance;
+    private int mResumedUid;
+    private String mResumedPackage;
+    private int mLastResumedUid;
+    private String mLastResumedPackage;
 
     public static ActivityManagerServiceExt getInstance() {
         if (sInstance == null) {
@@ -35,5 +39,17 @@ public class ActivityManagerServiceExt extends AbstractSystemService {
             XposedHelpers.callMethod(mService, MethodConstants.forceStopPackage, packageName, userId);
             Logger.d(TAG, "forceStopPackage: " + packageName + " success");
         });
+    }
+
+    public void notifyActivityResumed(int uid, String packageName) {
+        // 如果同一个uid，但是pkg从非null切到null？
+        mLastResumedUid = mResumedUid;
+        mLastResumedPackage = mResumedPackage;
+        mResumedUid = uid;
+        mResumedPackage = packageName;
+        if (uid != mLastResumedUid || !packageName.equals(mLastResumedPackage)) {
+            Logger.d(TAG, "front pkg: " + packageName + " prev pkg:" + mLastResumedPackage);
+            // notify app switch
+        }
     }
 }

@@ -1,16 +1,18 @@
 package com.reflecter.GuardElves.xposed.ActivityManagerService;
 
-import static android.app.usage.UsageEvents.Event.ACTIVITY_PAUSED;
 import static android.app.usage.UsageEvents.Event.ACTIVITY_RESUMED;
 
 import android.content.ComponentName;
+import android.content.pm.ActivityInfo;
 
 import com.reflecter.GuardElves.constants.ClassConstants;
+import com.reflecter.GuardElves.constants.FieldConstants;
 import com.reflecter.GuardElves.constants.MethodConstants;
-import com.reflecter.GuardElves.util.Logger;
+import com.reflecter.GuardElves.framework.server.ActivityManagerServiceExt;
 import com.reflecter.GuardElves.xposed.base.MethodHook;
 
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XposedHelpers;
 
 public class ActivitySwitchHook extends MethodHook {
     public static final String TAG = "ActivitySwitchHook";
@@ -21,11 +23,11 @@ public class ActivitySwitchHook extends MethodHook {
 
     @Override
     public String getTargetClass() {
-        return ClassConstants.ActivityManagerService;
+        return ClassConstants.ActivityTaskManagerService;
     }
 
     /**
-     * todo 是否在这个方法插桩，有待考究
+     * TaskFragment#resumeTopActivity -> ActivityRecord#setState -> ATMS::AMS#updateActivityUsageStats
      * @return
      */
     @Override
@@ -35,8 +37,7 @@ public class ActivitySwitchHook extends MethodHook {
 
     @Override
     public Object[] getTargetParam() {
-        return new Object[]{ClassConstants.ComponentName, int.class, int.class,
-                ClassConstants.IBinder, ClassConstants.ComponentName};
+        return new Object[] { ClassConstants.ActivityRecord, int.class };
     }
 
     @Override
@@ -47,22 +48,17 @@ public class ActivitySwitchHook extends MethodHook {
                 super.beforeHookedMethod(param);
                 // 获取方法参数
                 Object[] args = param.args;
-
                 // 获取切换事件
-                int event = (int) args[2];
-                if (event != ACTIVITY_PAUSED && event != ACTIVITY_RESUMED) {
+                int event = (int) args[1];
+                if (event != ACTIVITY_RESUMED) {
                     return;
                 }
+                ActivityInfo activityInfo  = ((ActivityInfo)XposedHelpers.getObjectField(args[0], FieldConstants.info));
+                // 本次resume事件的包名和uid
+                String packageName = activityInfo.packageName;
+                int uid = activityInfo.applicationInfo.uid;
 
-                // 本次事件用户
-                int userId = (int) args[1];
-                // 本次事件包名
-                String packageName = ((ComponentName) args[0]).getPackageName();
-                if (packageName == null) {
-                    return;
-                }
-
-                Logger.d(TAG, "front pkg: " + packageName + " event:" + event);
+                ActivityManagerServiceExt.getInstance().notifyActivityResumed(uid, packageName);
             }
         };
     }
