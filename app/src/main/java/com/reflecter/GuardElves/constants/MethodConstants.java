@@ -83,4 +83,5 @@ public interface MethodConstants {
     String dump = "dump";
     String updateInteractivityLocked = "updateInteractivityLocked";
     String setState = "setState";
+    String acquireWakeLock = "acquireWakeLock";
 }
