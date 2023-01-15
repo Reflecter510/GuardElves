@@ -39,6 +39,10 @@ public class PowerManagerServiceExt extends AbstractSystemService {
      * @param wakeLock
      */
     public void onWakeLockAcquired(Wakelock wakeLock) {
-        Logger.d(TAG, "" + wakeLock);
+        Logger.d(TAG, "Acquired:" + wakeLock);
+    }
+
+    public void onWakeLockReleased(Wakelock wakeLock) {
+        Logger.d(TAG, "Released:" + wakeLock);
     }
 }
