@@ -1,15 +1,14 @@
-package com.reflecter.GuardElves.xposed.ActivityManagerService;
+package com.reflecter.GuardElves.hook.ActivityManagerService;
 
 import static android.app.usage.UsageEvents.Event.ACTIVITY_RESUMED;
 
-import android.content.ComponentName;
 import android.content.pm.ActivityInfo;
 
 import com.reflecter.GuardElves.constants.ClassConstants;
 import com.reflecter.GuardElves.constants.FieldConstants;
 import com.reflecter.GuardElves.constants.MethodConstants;
 import com.reflecter.GuardElves.framework.server.ActivityManagerServiceExt;
-import com.reflecter.GuardElves.xposed.base.MethodHook;
+import com.reflecter.GuardElves.hook.base.MethodHook;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;

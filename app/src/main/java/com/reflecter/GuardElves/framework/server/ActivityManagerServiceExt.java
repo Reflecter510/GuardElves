@@ -1,5 +1,6 @@
 package com.reflecter.GuardElves.framework.server;
 
+import com.reflecter.GuardElves.constants.ClassConstants;
 import com.reflecter.GuardElves.constants.MethodConstants;
 import com.reflecter.GuardElves.framework.server.base.AbstractSystemService;
 import com.reflecter.GuardElves.util.Logger;
@@ -30,15 +31,18 @@ public class ActivityManagerServiceExt extends AbstractSystemService {
     private ActivityManagerServiceExt() { }
 
     @Override
+    public String getClassPath() {
+        return ClassConstants.ActivityManagerService;
+    }
+
+    @Override
     public String getServiceName() {
         return TAG;
     }
 
     public void forceStopPackage(String packageName, int userId) {
-        callMethodWithBootCheck(o -> {
-            XposedHelpers.callMethod(mService, MethodConstants.forceStopPackage, packageName, userId);
-            Logger.d(TAG, "forceStopPackage: " + packageName + " success");
-        });
+        callMethod(MethodConstants.forceStopPackage, packageName, userId);
+        Logger.d(TAG, "forceStopPackage: " + packageName);
     }
 
     public void notifyActivityResumed(int uid, String packageName) {

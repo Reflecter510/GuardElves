@@ -1,4 +1,4 @@
-package com.reflecter.GuardElves.xposed.base;
+package com.reflecter.GuardElves.hook.base;
 
 import com.reflecter.GuardElves.util.Logger;
 

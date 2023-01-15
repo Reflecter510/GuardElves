@@ -1,10 +1,10 @@
-package com.reflecter.GuardElves.xposed.DeviceIdleController;
+package com.reflecter.GuardElves.hook.DeviceIdleController;
 
 import com.reflecter.GuardElves.constants.ClassConstants;
 import com.reflecter.GuardElves.constants.MethodConstants;
 import com.reflecter.GuardElves.framework.server.ActivityManagerServiceExt;
 import com.reflecter.GuardElves.framework.server.DeviceIdleControllerExt;
-import com.reflecter.GuardElves.xposed.base.MethodHook;
+import com.reflecter.GuardElves.hook.base.MethodHook;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;

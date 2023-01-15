@@ -1,25 +1,25 @@
-package com.reflecter.GuardElves.xposed.ActivityManagerService;
+package com.reflecter.GuardElves.hook.DeviceIdleController;
 
 import com.reflecter.GuardElves.constants.ClassConstants;
 import com.reflecter.GuardElves.constants.MethodConstants;
-import com.reflecter.GuardElves.framework.server.ActivityManagerServiceExt;
-import com.reflecter.GuardElves.xposed.base.MethodHook;
+import com.reflecter.GuardElves.framework.server.DeviceIdleControllerExt;
+import com.reflecter.GuardElves.hook.base.MethodHook;
 
 import de.robv.android.xposed.XC_MethodHook;
 
-public class ActivityManagerServiceHook extends MethodHook {
-    public ActivityManagerServiceHook(ClassLoader classLoader) {
+public class UpdateInteractivityLockedHook extends MethodHook {
+    public UpdateInteractivityLockedHook(ClassLoader classLoader) {
         super(classLoader);
     }
 
     @Override
     public String getTargetClass() {
-        return ClassConstants.ActivityManagerService;
+        return ClassConstants.DeviceIdleController;
     }
 
     @Override
     public String getTargetMethod() {
-        return MethodConstants.setSystemProcess;
+        return MethodConstants.updateInteractivityLocked;
     }
 
     @Override
@@ -31,9 +31,9 @@ public class ActivityManagerServiceHook extends MethodHook {
     public XC_MethodHook getTargetHook() {
         return new XC_MethodHook() {
             @Override
-            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                super.beforeHookedMethod(param);
-                ActivityManagerServiceExt.getInstance().setService(param.thisObject);
+            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                super.afterHookedMethod(param);
+                DeviceIdleControllerExt.getInstance().updateInteractivityLocked();
             }
         };
     }

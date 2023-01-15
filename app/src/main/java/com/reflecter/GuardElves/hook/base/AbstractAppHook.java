@@ -1,4 +1,4 @@
-package com.reflecter.GuardElves.xposed.base;
+package com.reflecter.GuardElves.hook.base;
 
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;

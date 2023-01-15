@@ -1,12 +1,12 @@
-package com.reflecter.GuardElves.xposed;
+package com.reflecter.GuardElves.hook;
 
 import com.reflecter.GuardElves.constants.ClassConstants;
-import com.reflecter.GuardElves.xposed.ActivityManagerService.ActivityManagerServiceHook;
-import com.reflecter.GuardElves.xposed.ActivityManagerService.ActivitySwitchHook;
-import com.reflecter.GuardElves.xposed.DeviceIdleController.DumpHook;
-import com.reflecter.GuardElves.xposed.DeviceIdleController.UpdateInteractivityLockedHook;
-import com.reflecter.GuardElves.xposed.PowerManagerService.OnWakeLockAcquiredHook;
-import com.reflecter.GuardElves.xposed.base.AbstractAppHook;
+import com.reflecter.GuardElves.hook.ActivityManagerService.ActivityManagerServiceHook;
+import com.reflecter.GuardElves.hook.ActivityManagerService.ActivitySwitchHook;
+import com.reflecter.GuardElves.hook.DeviceIdleController.DumpHook;
+import com.reflecter.GuardElves.hook.DeviceIdleController.UpdateInteractivityLockedHook;
+import com.reflecter.GuardElves.hook.PowerManagerService.OnWakeLockAcquiredHook;
+import com.reflecter.GuardElves.hook.base.AbstractAppHook;
 
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 

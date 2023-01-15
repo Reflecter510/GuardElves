@@ -1,9 +1,9 @@
 package com.reflecter.GuardElves.framework.server;
 
+import com.reflecter.GuardElves.constants.ClassConstants;
+import com.reflecter.GuardElves.framework.clazz.Wakelock;
 import com.reflecter.GuardElves.framework.server.base.AbstractSystemService;
 import com.reflecter.GuardElves.util.Logger;
-
-import de.robv.android.xposed.XposedHelpers;
 
 public class PowerManagerServiceExt extends AbstractSystemService {
     public static final String TAG = "PowerManagerServiceExt";
@@ -22,6 +22,11 @@ public class PowerManagerServiceExt extends AbstractSystemService {
 
     private PowerManagerServiceExt() { }
 
+    @Override
+    public String getClassPath() {
+        return ClassConstants.PowerManagerService;
+    }
+
 
     @Override
     public String getServiceName() {
@@ -33,7 +38,7 @@ public class PowerManagerServiceExt extends AbstractSystemService {
      * 时机：获取完成之后
      * @param wakeLock
      */
-    public void onWakeLockAcquired(Object wakeLock) {
-        Logger.d(TAG, "" + wakeLock + " " + XposedHelpers.getObjectField(wakeLock, "mTag"));
+    public void onWakeLockAcquired(Wakelock wakeLock) {
+        Logger.d(TAG, "" + wakeLock);
     }
 }

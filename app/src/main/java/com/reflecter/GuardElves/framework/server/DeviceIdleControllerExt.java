@@ -1,5 +1,6 @@
 package com.reflecter.GuardElves.framework.server;
 
+import com.reflecter.GuardElves.constants.ClassConstants;
 import com.reflecter.GuardElves.constants.FieldConstants;
 import com.reflecter.GuardElves.constants.MethodConstants;
 import com.reflecter.GuardElves.framework.server.base.AbstractSystemService;
@@ -25,27 +26,30 @@ public class DeviceIdleControllerExt extends AbstractSystemService {
     private DeviceIdleControllerExt() { }
 
     @Override
+    public String getClassPath() {
+        return ClassConstants.DeviceIdleController;
+    }
+
+    @Override
     public String getServiceName() {
         return TAG;
     }
 
     public void stepIntoDeepIdle() {
-        callMethodWithBootCheck(o -> {
-            int STATE_LOCATING = XposedHelpers.getStaticIntField(mService.getClass(), FieldConstants.STATE_LOCATING);
-            XposedHelpers.setIntField(mService, FieldConstants.mState, STATE_LOCATING);
+        doWithBootCheck(o -> {
+            int STATE_LOCATING = getStaticIntField(FieldConstants.STATE_LOCATING);
+            setIntField(FieldConstants.mState, STATE_LOCATING);
             synchronized (mService.getClass()) {
-                XposedHelpers.callMethod(mService, MethodConstants.stepIdleStateLocked, TAG);
+                callMethod(MethodConstants.stepIdleStateLocked, TAG);
             }
         });
     }
 
     public void updateInteractivityLocked() {
-        callMethodWithBootCheck(o -> {
-            mScreenOn = XposedHelpers.getBooleanField(mService, FieldConstants.mScreenOn);
-            // todo 试验功能：灭屏直接进入DeepDoze
-            if (!mScreenOn) {
-                stepIntoDeepIdle();
-            }
-        });
+        mScreenOn = getBooleanField(FieldConstants.mScreenOn);
+        // todo 试验功能：灭屏直接进入DeepDoze
+        if (!mScreenOn) {
+            stepIntoDeepIdle();
+        }
     }
 }
