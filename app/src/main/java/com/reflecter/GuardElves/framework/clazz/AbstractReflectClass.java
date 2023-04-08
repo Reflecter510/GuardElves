@@ -22,6 +22,10 @@ public abstract class AbstractReflectClass {
 
     public abstract String getClassPath();
 
+    public boolean isNull() {
+        return mObject == null;
+    }
+
     public <T> T getObjectField(String fieldName) {
         if (mObject == null) {
             return null;
@@ -32,7 +36,7 @@ public abstract class AbstractReflectClass {
 
     public int getIntField(String fieldName) {
         if (mObject == null) {
-            return 0;
+            return Integer.MIN_VALUE;
         }
         return XposedHelpers.getIntField(mObject, fieldName);
     }
@@ -46,7 +50,7 @@ public abstract class AbstractReflectClass {
 
     public int getStaticIntField(String fieldName) {
         if (mObject == null) {
-            return 0;
+            return Integer.MIN_VALUE;
         }
         return XposedHelpers.getStaticIntField(mObject.getClass(), fieldName);
     }
@@ -58,12 +62,26 @@ public abstract class AbstractReflectClass {
         return XposedHelpers.getBooleanField(mObject, fieldName);
     }
 
-    public void callMethod(String methodName, Object... args) {
+    public boolean getStaticBooleanField(String fieldName) {
+        if (mObject == null) {
+            return false;
+        }
+        return XposedHelpers.getStaticBooleanField(mObject.getClass(), fieldName);
+    }
+
+    public void setStaticBooleanField(String fieldName, boolean value) {
+        if (mObject == null) {
+            return ;
+        }
+        XposedHelpers.setStaticBooleanField(mObject.getClass(), fieldName, value);
+    }
+
+    public Object call(String methodName, Object... args) {
         if (mObject == null) {
             Logger.e(TAG, getClassPath() + "->" + methodName + ": object is null");
-            return;
+            return null;
         }
-        XposedHelpers.callMethod(mObject, methodName, args);
+        return XposedHelpers.callMethod(mObject, methodName, args);
     }
 
     @NonNull

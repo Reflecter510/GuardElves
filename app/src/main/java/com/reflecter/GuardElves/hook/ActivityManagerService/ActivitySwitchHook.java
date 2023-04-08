@@ -4,9 +4,9 @@ import static android.app.usage.UsageEvents.Event.ACTIVITY_RESUMED;
 
 import android.content.pm.ActivityInfo;
 
-import com.reflecter.GuardElves.constants.ClassConstants;
-import com.reflecter.GuardElves.constants.FieldConstants;
-import com.reflecter.GuardElves.constants.MethodConstants;
+import com.reflecter.GuardElves.constants.ClassConst;
+import com.reflecter.GuardElves.constants.FieldConst;
+import com.reflecter.GuardElves.constants.MethodConst;
 import com.reflecter.GuardElves.framework.server.ActivityManagerServiceExt;
 import com.reflecter.GuardElves.hook.base.MethodHook;
 
@@ -22,7 +22,7 @@ public class ActivitySwitchHook extends MethodHook {
 
     @Override
     public String getTargetClass() {
-        return ClassConstants.ActivityTaskManagerService;
+        return ClassConst.ActivityTaskManagerService;
     }
 
     /**
@@ -31,12 +31,12 @@ public class ActivitySwitchHook extends MethodHook {
      */
     @Override
     public String getTargetMethod() {
-        return MethodConstants.updateActivityUsageStats;
+        return MethodConst.updateActivityUsageStats;
     }
 
     @Override
     public Object[] getTargetParam() {
-        return new Object[] { ClassConstants.ActivityRecord, int.class };
+        return new Object[] { ClassConst.ActivityRecord, int.class };
     }
 
     @Override
@@ -52,7 +52,7 @@ public class ActivitySwitchHook extends MethodHook {
                 if (event != ACTIVITY_RESUMED) {
                     return;
                 }
-                ActivityInfo activityInfo  = ((ActivityInfo)XposedHelpers.getObjectField(args[0], FieldConstants.info));
+                ActivityInfo activityInfo  = ((ActivityInfo)XposedHelpers.getObjectField(args[0], FieldConst.info));
                 // 本次resume事件的包名和uid
                 String packageName = activityInfo.packageName;
                 int uid = activityInfo.applicationInfo.uid;

@@ -3,7 +3,7 @@ package com.reflecter.GuardElves.constants;
 /**
  * 方法枚举.
  */
-public interface MethodConstants {
+public interface MethodConst {
     String updateActivityUsageStats = "updateActivityUsageStats";
     String deliverToRegisteredReceiverLocked = "deliverToRegisteredReceiverLocked";
     String appNotResponding = "appNotResponding";
@@ -32,6 +32,7 @@ public interface MethodConstants {
     String isKilled = "isKilled";
     String setKilled = "setKilled";
     String forceStopPackage = "forceStopPackage";
+    String getProcessRecordLocked = "getProcessRecordLocked";
     String kill = "kill";
     String activityIdleInternal = "activityIdleInternal";
     String trimInactiveRecentTasks = "trimInactiveRecentTasks";

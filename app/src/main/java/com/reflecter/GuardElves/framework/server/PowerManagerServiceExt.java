@@ -1,6 +1,6 @@
 package com.reflecter.GuardElves.framework.server;
 
-import com.reflecter.GuardElves.constants.ClassConstants;
+import com.reflecter.GuardElves.constants.ClassConst;
 import com.reflecter.GuardElves.framework.clazz.Wakelock;
 import com.reflecter.GuardElves.framework.server.base.AbstractSystemService;
 import com.reflecter.GuardElves.util.Logger;
@@ -24,7 +24,7 @@ public class PowerManagerServiceExt extends AbstractSystemService {
 
     @Override
     public String getClassPath() {
-        return ClassConstants.PowerManagerService;
+        return ClassConst.PowerManagerService;
     }
 
 

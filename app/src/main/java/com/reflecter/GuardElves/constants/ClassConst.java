@@ -8,7 +8,7 @@ import com.reflecter.GuardElves.framework.server.base.ISystemServiceExt;
 /**
  * 类枚举.
  */
-public interface ClassConstants {
+public interface ClassConst {
     ArrayMap<String, ISystemServiceExt> serverExts = new ArrayMap<String, ISystemServiceExt>() { {
             put(PowerManagerService, PowerManagerServiceExt.getInstance());
             put(AlarmManagerService, AlarmManagerServiceExt.getInstance());

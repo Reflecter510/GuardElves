@@ -1,7 +1,7 @@
 package com.reflecter.GuardElves.hook.DeviceIdleController;
 
-import com.reflecter.GuardElves.constants.ClassConstants;
-import com.reflecter.GuardElves.constants.MethodConstants;
+import com.reflecter.GuardElves.constants.ClassConst;
+import com.reflecter.GuardElves.constants.MethodConst;
 import com.reflecter.GuardElves.framework.server.DeviceIdleControllerExt;
 import com.reflecter.GuardElves.hook.base.MethodHook;
 
@@ -14,12 +14,12 @@ public class UpdateInteractivityLockedHook extends MethodHook {
 
     @Override
     public String getTargetClass() {
-        return ClassConstants.DeviceIdleController;
+        return ClassConst.DeviceIdleController;
     }
 
     @Override
     public String getTargetMethod() {
-        return MethodConstants.updateInteractivityLocked;
+        return MethodConst.updateInteractivityLocked;
     }
 
     @Override

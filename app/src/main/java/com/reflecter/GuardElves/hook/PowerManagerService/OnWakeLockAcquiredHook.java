@@ -1,7 +1,7 @@
 package com.reflecter.GuardElves.hook.PowerManagerService;
 
-import com.reflecter.GuardElves.constants.ClassConstants;
-import com.reflecter.GuardElves.constants.MethodConstants;
+import com.reflecter.GuardElves.constants.ClassConst;
+import com.reflecter.GuardElves.constants.MethodConst;
 import com.reflecter.GuardElves.framework.clazz.Wakelock;
 import com.reflecter.GuardElves.framework.server.PowerManagerServiceExt;
 import com.reflecter.GuardElves.hook.base.MethodHook;
@@ -19,18 +19,18 @@ public class OnWakeLockAcquiredHook extends MethodHook {
 
     @Override
     public String getTargetClass() {
-        return ClassConstants.PowerManagerService;
+        return ClassConst.PowerManagerService;
     }
 
     @Override
     public String getTargetMethod() {
-        return MethodConstants.notifyWakeLockAcquiredLocked;
+        return MethodConst.notifyWakeLockAcquiredLocked;
     }
 
     @Override
     public Object[] getTargetParam() {
         return new Object[] {
-                ClassConstants.WakeLock
+                ClassConst.WakeLock
         };
     }
 

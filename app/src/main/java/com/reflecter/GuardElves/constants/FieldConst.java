@@ -3,7 +3,7 @@ package com.reflecter.GuardElves.constants;
 /**
  * 字段枚举.
  */
-public interface FieldConstants {
+public interface FieldConst {
     String packageName = "packageName";
     String uid = "uid";
     String pid = "pid";
@@ -51,4 +51,5 @@ public interface FieldConstants {
     String STATE_LOCATING = "STATE_LOCATING";
     String mPowerSaveWhitelistUserApps = "mPowerSaveWhitelistUserApps";
     String mScreenOn = "mScreenOn";
+    String mCurProcState = "mCurProcState";
 }

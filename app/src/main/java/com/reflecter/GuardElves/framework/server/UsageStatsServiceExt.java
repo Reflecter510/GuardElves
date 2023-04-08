@@ -1,6 +1,6 @@
 package com.reflecter.GuardElves.framework.server;
 
-import com.reflecter.GuardElves.constants.ClassConstants;
+import com.reflecter.GuardElves.constants.ClassConst;
 import com.reflecter.GuardElves.framework.server.base.AbstractSystemService;
 
 public class UsageStatsServiceExt extends AbstractSystemService {
@@ -23,7 +23,7 @@ public class UsageStatsServiceExt extends AbstractSystemService {
 
     @Override
     public String getClassPath() {
-        return ClassConstants.UsageStatsService;
+        return ClassConst.UsageStatsService;
     }
 
     @Override

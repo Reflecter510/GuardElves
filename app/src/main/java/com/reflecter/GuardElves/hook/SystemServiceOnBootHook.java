@@ -1,7 +1,7 @@
 package com.reflecter.GuardElves.hook;
 
-import com.reflecter.GuardElves.constants.ClassConstants;
-import com.reflecter.GuardElves.constants.MethodConstants;
+import com.reflecter.GuardElves.constants.ClassConst;
+import com.reflecter.GuardElves.constants.MethodConst;
 import com.reflecter.GuardElves.util.Logger;
 import com.reflecter.GuardElves.hook.base.MethodHook;
 
@@ -23,7 +23,7 @@ public class SystemServiceOnBootHook extends MethodHook {
 
     @Override
     public String getTargetMethod() {
-        return MethodConstants.onBootPhase;
+        return MethodConst.onBootPhase;
     }
 
     @Override
@@ -37,8 +37,8 @@ public class SystemServiceOnBootHook extends MethodHook {
             @Override
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                 super.afterHookedMethod(param);
-                if (ClassConstants.serverExts.containsKey(getTargetClass())) {
-                    ClassConstants.serverExts.get(getTargetClass()).setService(param.thisObject);
+                if (ClassConst.serverExts.containsKey(getTargetClass())) {
+                    ClassConst.serverExts.get(getTargetClass()).setService(param.thisObject);
                     Logger.d(TAG, "Hook onBootPhase: " + param.thisObject);
                 }
             }

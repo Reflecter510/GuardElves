@@ -1,6 +1,6 @@
 package com.reflecter.GuardElves.hook;
 
-import com.reflecter.GuardElves.constants.ClassConstants;
+import com.reflecter.GuardElves.constants.ClassConst;
 import com.reflecter.GuardElves.hook.ActivityManagerService.ActivityManagerServiceHook;
 import com.reflecter.GuardElves.hook.ActivityManagerService.ActivitySwitchHook;
 import com.reflecter.GuardElves.hook.DeviceIdleController.DumpHook;
@@ -35,7 +35,7 @@ public class SystemServerHook extends AbstractAppHook {
 
     @Override
     public void hook() {
-        for (String serverName : ClassConstants.serverExts.keySet()) {
+        for (String serverName : ClassConst.serverExts.keySet()) {
             new SystemServiceOnBootHook(mClassLoader, serverName);
         }
         // ActivityManagerService

@@ -1,7 +1,7 @@
 package com.reflecter.GuardElves.hook.DeviceIdleController;
 
-import com.reflecter.GuardElves.constants.ClassConstants;
-import com.reflecter.GuardElves.constants.MethodConstants;
+import com.reflecter.GuardElves.constants.ClassConst;
+import com.reflecter.GuardElves.constants.MethodConst;
 import com.reflecter.GuardElves.framework.server.ActivityManagerServiceExt;
 import com.reflecter.GuardElves.framework.server.DeviceIdleControllerExt;
 import com.reflecter.GuardElves.hook.base.MethodHook;
@@ -23,12 +23,12 @@ public class DumpHook extends MethodHook {
 
     @Override
     public String getTargetClass() {
-        return ClassConstants.DeviceIdleController;
+        return ClassConst.DeviceIdleController;
     }
 
     @Override
     public String getTargetMethod() {
-        return MethodConstants.dump;
+        return MethodConst.dump;
     }
 
     @Override
@@ -62,6 +62,11 @@ public class DumpHook extends MethodHook {
                             ActivityManagerServiceExt.getInstance().forceStopPackage(packageName, 0);
                             pw.println("forceStopApp done");
                             break;
+                        case "getProcessState":
+                            String processName = args[1];
+                            String uid = args[2];
+                            int state = ActivityManagerServiceExt.getInstance().getProcessState(processName, Integer.parseInt(uid));
+                            pw.println("getProcessState: process:" + processName + " uid=" + uid + " state=" +  state);
                         default:
                             break;
                     }

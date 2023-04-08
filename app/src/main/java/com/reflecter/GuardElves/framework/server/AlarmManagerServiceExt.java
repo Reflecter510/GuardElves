@@ -1,6 +1,6 @@
 package com.reflecter.GuardElves.framework.server;
 
-import com.reflecter.GuardElves.constants.ClassConstants;
+import com.reflecter.GuardElves.constants.ClassConst;
 import com.reflecter.GuardElves.framework.server.base.AbstractSystemService;
 
 public class AlarmManagerServiceExt extends AbstractSystemService {
@@ -22,7 +22,7 @@ public class AlarmManagerServiceExt extends AbstractSystemService {
 
     @Override
     public String getClassPath() {
-        return ClassConstants.AlarmManagerService;
+        return ClassConst.AlarmManagerService;
     }
 
     @Override

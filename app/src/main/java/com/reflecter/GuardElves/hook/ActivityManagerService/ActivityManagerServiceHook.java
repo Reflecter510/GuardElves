@@ -1,7 +1,7 @@
 package com.reflecter.GuardElves.hook.ActivityManagerService;
 
-import com.reflecter.GuardElves.constants.ClassConstants;
-import com.reflecter.GuardElves.constants.MethodConstants;
+import com.reflecter.GuardElves.constants.ClassConst;
+import com.reflecter.GuardElves.constants.MethodConst;
 import com.reflecter.GuardElves.framework.server.ActivityManagerServiceExt;
 import com.reflecter.GuardElves.hook.base.MethodHook;
 
@@ -14,12 +14,12 @@ public class ActivityManagerServiceHook extends MethodHook {
 
     @Override
     public String getTargetClass() {
-        return ClassConstants.ActivityManagerService;
+        return ClassConst.ActivityManagerService;
     }
 
     @Override
     public String getTargetMethod() {
-        return MethodConstants.setSystemProcess;
+        return MethodConst.setSystemProcess;
     }
 
     @Override
