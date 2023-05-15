@@ -18,6 +18,7 @@ public interface ClassConst {
     };
 
     String ANDROID = "android";
+    String SystemService = "com.android.server.SystemService";
     String ActivityManagerService = "com.android.server.am.ActivityManagerService";
     String ComponentName = "android.content.ComponentName";
     String IBinder = "android.os.IBinder";

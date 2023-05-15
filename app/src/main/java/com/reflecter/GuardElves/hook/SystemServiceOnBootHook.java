@@ -1,11 +1,13 @@
 package com.reflecter.GuardElves.hook;
 
 import com.reflecter.GuardElves.constants.ClassConst;
+import com.reflecter.GuardElves.constants.FieldConst;
 import com.reflecter.GuardElves.constants.MethodConst;
 import com.reflecter.GuardElves.util.Logger;
 import com.reflecter.GuardElves.hook.base.MethodHook;
 
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XposedHelpers;
 
 public class SystemServiceOnBootHook extends MethodHook {
     private static final String TAG = "SystemServiceOnBootHook";
@@ -37,7 +39,10 @@ public class SystemServiceOnBootHook extends MethodHook {
             @Override
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                 super.afterHookedMethod(param);
-                if (ClassConst.serverExts.containsKey(getTargetClass())) {
+                int phase = (int) param.args[0];
+                int PHASE_ACTIVITY_MANAGER_READY = XposedHelpers.getStaticIntField(XposedHelpers
+                        .findClass(ClassConst.SystemService, classLoader), FieldConst.PHASE_ACTIVITY_MANAGER_READY);
+                if ((phase == PHASE_ACTIVITY_MANAGER_READY) && ClassConst.serverExts.containsKey(getTargetClass())) {
                     ClassConst.serverExts.get(getTargetClass()).setService(param.thisObject);
                     Logger.d(TAG, "Hook onBootPhase: " + param.thisObject);
                 }

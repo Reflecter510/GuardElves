@@ -52,4 +52,5 @@ public interface FieldConst {
     String mPowerSaveWhitelistUserApps = "mPowerSaveWhitelistUserApps";
     String mScreenOn = "mScreenOn";
     String mCurProcState = "mCurProcState";
+    String PHASE_ACTIVITY_MANAGER_READY = "PHASE_ACTIVITY_MANAGER_READY";
 }
