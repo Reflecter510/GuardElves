@@ -61,6 +61,8 @@ public interface ClassConst {
     String AlarmManagerService = "com.android.server.alarm.AlarmManagerService";
     String AlarmManagerService_R = "com.android.server.AlarmManagerService";
     String WakeLock = "com.android.server.power.PowerManagerService.WakeLock";
+    String ThermalManagerService = "com.android.server.power.ThermalManagerService";
+    String Temperature = "android.os.Temperature";
     /**
      * colorOS
      */

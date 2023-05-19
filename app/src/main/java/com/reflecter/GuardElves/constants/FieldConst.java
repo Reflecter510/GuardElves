@@ -53,4 +53,5 @@ public interface FieldConst {
     String mScreenOn = "mScreenOn";
     String mCurProcState = "mCurProcState";
     String PHASE_ACTIVITY_MANAGER_READY = "PHASE_ACTIVITY_MANAGER_READY";
+    String mType = "mType";
 }

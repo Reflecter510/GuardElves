@@ -85,4 +85,6 @@ public interface MethodConst {
     String updateInteractivityLocked = "updateInteractivityLocked";
     String setState = "setState";
     String acquireWakeLock = "acquireWakeLock";
+
+    String onTemperatureChangedCallback = "onTemperatureChangedCallback";
 }

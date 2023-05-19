@@ -6,6 +6,7 @@ import com.reflecter.GuardElves.hook.ActivityManagerService.ActivitySwitchHook;
 import com.reflecter.GuardElves.hook.DeviceIdleController.DumpHook;
 import com.reflecter.GuardElves.hook.DeviceIdleController.UpdateInteractivityLockedHook;
 import com.reflecter.GuardElves.hook.PowerManagerService.*;
+import com.reflecter.GuardElves.hook.ThermalManagerService.OnTemperatureChangedCallbackHook;
 import com.reflecter.GuardElves.hook.base.AbstractAppHook;
 
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
@@ -49,5 +50,8 @@ public class SystemServerHook extends AbstractAppHook {
         // PowerManagerService
         new OnWakeLockAcquiredHook(mClassLoader);
         new OnWakeLockReleasedHook(mClassLoader);
+
+        // ThermalManagerService
+        new OnTemperatureChangedCallbackHook(mClassLoader);
     }
 }
