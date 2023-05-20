@@ -14,6 +14,7 @@ public interface ClassConst {
             put(AlarmManagerService, AlarmManagerServiceExt.getInstance());
             put(DeviceIdleController, DeviceIdleControllerExt.getInstance());
             put(UsageStatsService, UsageStatsServiceExt.getInstance());
+            put(ThermalManagerService, ThermalManagerServiceExt.getInstance());
         }
     };
 

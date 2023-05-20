@@ -20,6 +20,10 @@ public abstract class AbstractReflectClass {
         mObject = o;
     }
 
+    public Object getObject() {
+        return mObject;
+    }
+
     public abstract String getClassPath();
 
     public boolean isNull() {
@@ -82,6 +86,15 @@ public abstract class AbstractReflectClass {
             return null;
         }
         return XposedHelpers.callMethod(mObject, methodName, args);
+    }
+
+    public void newInstance(ClassLoader classLoader, Object... args) {
+        try {
+            Object object = XposedHelpers.newInstance(XposedHelpers.findClass(getClassPath(), classLoader), args);
+            setObject(object);
+        } catch (Exception e) {
+            Logger.e(TAG, "newInstance e=" + e);
+        }
     }
 
     @NonNull

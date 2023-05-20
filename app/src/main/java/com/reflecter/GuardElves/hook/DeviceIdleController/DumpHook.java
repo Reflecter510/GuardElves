@@ -2,8 +2,10 @@ package com.reflecter.GuardElves.hook.DeviceIdleController;
 
 import com.reflecter.GuardElves.constants.ClassConst;
 import com.reflecter.GuardElves.constants.MethodConst;
+import com.reflecter.GuardElves.framework.clazz.Temperature;
 import com.reflecter.GuardElves.framework.server.ActivityManagerServiceExt;
 import com.reflecter.GuardElves.framework.server.DeviceIdleControllerExt;
+import com.reflecter.GuardElves.framework.server.ThermalManagerServiceExt;
 import com.reflecter.GuardElves.hook.base.MethodHook;
 
 import java.io.FileDescriptor;
@@ -52,6 +54,11 @@ public class DumpHook extends MethodHook {
                             DeviceIdleControllerExt.getInstance().stepIntoDeepIdle();
                             pw.println("deepIdle done");
                             break;
+                        case "thermalShutdown":
+                            Temperature temperature = new Temperature(null);
+                            temperature.newInstance(classLoader, 31.26510F, (int)3, "skin", (int)6);
+                            ThermalManagerServiceExt.getInstance().notifyTemperature(temperature);
+                            break;
                         default:
                             break;
                     }
@@ -67,6 +74,13 @@ public class DumpHook extends MethodHook {
                             String uid = args[2];
                             int state = ActivityManagerServiceExt.getInstance().getProcessState(processName, Integer.parseInt(uid));
                             pw.println("getProcessState: process:" + processName + " uid=" + uid + " state=" +  state);
+
+                        case "thermalStatus":
+                            int status = Integer.parseInt(args[1]);
+                            Temperature temperature = new Temperature(null);
+                            temperature.newInstance(classLoader, 31.26510F, (int)3, "skin", (int)status);
+                            ThermalManagerServiceExt.getInstance().notifyTemperature(temperature);
+                            break;
                         default:
                             break;
                     }
